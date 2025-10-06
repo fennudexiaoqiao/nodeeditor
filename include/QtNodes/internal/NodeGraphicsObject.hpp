@@ -12,7 +12,7 @@ namespace QtNodes {
 class BasicGraphicsScene;
 class AbstractGraphModel;
 
-class NodeGraphicsObject : public QGraphicsObject
+class NODE_EDITOR_PUBLIC NodeGraphicsObject : public QGraphicsObject
 {
     Q_OBJECT
 public:

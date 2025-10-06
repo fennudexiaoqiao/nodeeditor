@@ -145,7 +145,8 @@ public Q_SLOTS:
     void onConnectionCreated(ConnectionId const connectionId);
 
     void onNodeDeleted(NodeId const nodeId);
-    void onNodeCreated(NodeId const nodeId);
+    // 重写该函数支持自定义 NodeGraphicsObject
+    virtual void onNodeCreated(NodeId const nodeId);
     void onNodePositionUpdated(NodeId const nodeId);
     void onNodeUpdated(NodeId const nodeId);
     void onNodeClicked(NodeId const nodeId);
