@@ -151,14 +151,13 @@ public Q_SLOTS:
     void onNodeUpdated(NodeId const nodeId);
     void onNodeClicked(NodeId const nodeId);
     void onModelReset();
+protected:
+    using UniqueNodeGraphicsObject = std::unique_ptr<NodeGraphicsObject>;
+    using UniqueConnectionGraphicsObject = std::unique_ptr<ConnectionGraphicsObject>;
+    std::unordered_map<NodeId, UniqueNodeGraphicsObject> _nodeGraphicsObjects;
 
 private:
     AbstractGraphModel &_graphModel;
-
-    using UniqueNodeGraphicsObject = std::unique_ptr<NodeGraphicsObject>;
-    using UniqueConnectionGraphicsObject = std::unique_ptr<ConnectionGraphicsObject>;
-
-    std::unordered_map<NodeId, UniqueNodeGraphicsObject> _nodeGraphicsObjects;
     std::unordered_map<ConnectionId, UniqueConnectionGraphicsObject> _connectionGraphicsObjects;
     std::unique_ptr<ConnectionGraphicsObject> _draftConnection;
     std::unique_ptr<AbstractNodeGeometry> _nodeGeometry;
