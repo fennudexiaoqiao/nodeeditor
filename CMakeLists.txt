@@ -32,7 +32,6 @@ option(BUILD_DOCS "Build Documentation" "${QT_NODES_DEVELOPER_DEFAULTS}")
 option(BUILD_SHARED_LIBS "Build as shared library" ON)
 option(BUILD_DEBUG_POSTFIX_D "Append d suffix to debug libraries" OFF)
 option(QT_NODES_FORCE_TEST_COLOR "Force colorized unit test output" OFF)
-option(USE_QT6 "Build with Qt6 (Enabled by default)" ON)
 
 if(QT_NODES_DEVELOPER_DEFAULTS)
   set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
@@ -48,6 +47,16 @@ if(BUILD_DEBUG_POSTFIX_D)
 endif()
 
 add_subdirectory(external)
+
+if(NOT DEFINED USE_QT6)
+  if(DEFINED Qt_VERSION_MAJOR AND Qt_VERSION_MAJOR EQUAL 6)
+    set(USE_QT6 ON)
+  else()
+    set(USE_QT6 OFF)
+  endif()
+endif()
+
+option(USE_QT6 "Build with Qt6 (Enabled by default)" "${USE_QT6}")
 
 if(USE_QT6)
   find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
